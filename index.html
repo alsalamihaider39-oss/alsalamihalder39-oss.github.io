@@ -5,573 +5,1493 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color"
-          content="#0896DB">
-
-    <meta name="description"
-          content="ثانوية الصالحات الأهلية للبنات - كربلاء">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
     <title>
-        ثانوية الصالحات الأهلية للبنات
+        مركز كربلاء لتكنولوجيا المعلومات
     </title>
 
 
-    <!-- ==============================
-         GOOGLE FONT
-    =============================== -->
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <meta name="description" content="مركز كربلاء لتكنولوجيا المعلومات — مركز تدريبي متخصص في كربلاء يقدم دورات الحاسوب، المونتاج، التصوير، الفوتوشوب، اللغات، الذكاء الاصطناعي، الأمن السيبراني والتسويق الإلكتروني، مع قاعات مجهزة للإيجار.">
+    <meta name="keywords" content="مركز كربلاء لتكنولوجيا المعلومات, دورات كربلاء, دورة حاسوب كربلاء, دورة تصوير, دورة مونتاج, تعليم كربلاء, قاعات ايجار كربلاء, دورات الذكاء الاصطناعي">
+    <meta name="author" content="مركز كربلاء لتكنولوجيا المعلومات">
+    <meta name="theme-color" content="#0a1e4d">
+    <link rel="canonical" href="https://karbala-it.com/">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="color-scheme" content="dark">
+    <meta name="geo.region" content="IQ-KE">
+    <meta name="geo.placename" content="كربلاء">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <!-- =====================================================
+         حماية أمنية (Security Hardening)
+         ---------------------------------------------------
+         script-src أصبح 'self' فقط بدون 'unsafe-inline' — كل
+         أزرار الموقع تستخدم الآن data-action بدل onclick المضمّن
+         (راجع V73 بأسفل script.js)، فأي كود يحاول التسلل عبر حقن
+         HTML/<script> لن ينفَّذ إطلاقاً حتى لو نجح بالوصول للصفحة.
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+         style-src ما زال يحتاج 'unsafe-inline' لأن الموقع يستخدم
+         حركات JS كثيرة تُغيّر خاصية style مباشرة (شريط التقدّم،
+         عدّاد الإحصائيات، تمرير الصور...) — هذا فرق مقصود، لأن
+         حقن CSS خطره أقل بكثير من حقن JS قابل للتنفيذ.
+
+         الحماية الأقوى (X-Frame-Options, X-Content-Type-Options, HSTS,
+         Permissions-Policy) لازم تُضاف كـ HTTP Headers من
+         إعدادات الاستضافة — راجع ملفات: _headers / .htaccess
+         / nginx-security.conf المرفقة معها شرح كامل.
+
+         ⚠️ إذا فعّلتوا مستقبلاً SHEETS_ENDPOINT أو PAYMENT_ENDPOINT
+         في script.js، لازم تضيفوا نطاقهم داخل connect-src
+         و form-action بالأسفل، وإلا راح يمنعهم CSP من العمل.
+    ====================================================== -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data:;
+        connect-src 'self';
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'self';
+        upgrade-insecure-requests;
+    ">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- أيقونة الموقع -->
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="images/logo.png">
+
+    <!-- تطبيق ويب (PWA) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="مركز كربلاء">
+
+    <!-- بطاقة المشاركة (واتساب / فيسبوك / تيليجرام) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="مركز كربلاء لتكنولوجيا المعلومات">
+    <meta property="og:locale" content="ar_IQ">
+    <meta property="og:title" content="مركز كربلاء لتكنولوجيا المعلومات">
+    <meta property="og:description" content="طوّر مهاراتك وابنِ مستقبلك — دورات وورش تدريبية متخصصة وقاعات مجهزة للإيجار في كربلاء.">
+    <meta property="og:image" content="https://karbala-it.com/images/og-cover.jpg">
+    <meta property="og:image:alt" content="مركز كربلاء لتكنولوجيا المعلومات">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://karbala-it.com/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="مركز كربلاء لتكنولوجيا المعلومات">
+    <meta name="twitter:description" content="دورات وورش تدريبية متخصصة وقاعات مجهزة للإيجار في كربلاء.">
+    <meta name="twitter:image" content="https://karbala-it.com/images/og-cover.jpg">
 
 
-    <!-- ==============================
-         FONT AWESOME
-    =============================== -->
+    <!-- =====================================================
+         GOOGLE FONT - CAIRO
+    ====================================================== -->
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preload" as="image" href="images/logo.png">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 
 
-    <!-- ==============================
+    <!-- =====================================================
          CSS
-    =============================== -->
+    ====================================================== -->
 
-    <link rel="stylesheet"
-          href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- =====================================================
+         بيانات منظّمة لمحركات البحث
+    ====================================================== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "مركز كربلاء لتكنولوجيا المعلومات",
+        "alternateName": "Karbala Information Technology Center",
+        "url": "https://karbala-it.com/",
+        "logo": "https://karbala-it.com/images/logo.png",
+        "email": "karblaacit@gmail.com",
+        "telephone": "+9647748477756",
+        "foundingDate": "2023",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "طريق الحر - مقابل مدينة ألعاب نوارس",
+            "addressLocality": "كربلاء",
+            "addressCountry": "IQ"
+        },
+        "sameAs": [
+            "https://www.instagram.com/it.karbala",
+            "https://www.facebook.com/share/1Jr3gP7Djq/",
+            "https://t.me/IT_karbala",
+            "https://www.tiktok.com/@it.karbala"
+        ]
+    }
+    </script>
 
 </head>
 
 
 <body>
 
+    <a class="skip-link" href="#home">تخطي إلى المحتوى</a>
 
-    <!-- ==========================================
-         SCHOOL BACKGROUND SYMBOLS
-    =========================================== -->
+    <noscript>
+        <div class="noscript-note">
+            لعرض الموقع بشكل كامل (الدورات، القاعات، التسجيل) يرجى تفعيل جافاسكربت في المتصفح،
+            أو التواصل معنا على 07748477756.
+        </div>
+    </noscript>
 
-    <div class="school-symbols" aria-hidden="true">
 
-        <span class="symbol symbol-1">
-            <i class="fa-solid fa-graduation-cap"></i>
-        </span>
+    <!-- =====================================================
+         SCROLL PROGRESS BAR
+    ====================================================== -->
 
-        <span class="symbol symbol-2">
-            <i class="fa-solid fa-book-open"></i>
-        </span>
+    <div class="scroll-progress" aria-hidden="true">
+        <span id="scrollProgressBar"></span>
+    </div>
 
-        <span class="symbol symbol-3">
-            <i class="fa-solid fa-pencil"></i>
-        </span>
 
-        <span class="symbol symbol-4">
-            <i class="fa-solid fa-school"></i>
-        </span>
+    <!-- =====================================================
+         AURORA BACKGROUND
+         طبقة الإضاءة المتحركة خلف الموقع
+    ====================================================== -->
 
-        <span class="symbol symbol-5">
-            <i class="fa-solid fa-book"></i>
-        </span>
+    <div class="bg-aurora" aria-hidden="true">
+        <span class="aurora aurora-1"></span>
+        <span class="aurora aurora-2"></span>
+        <span class="aurora aurora-3"></span>
+    </div>
 
-        <span class="symbol symbol-6">
-            <i class="fa-solid fa-ruler"></i>
-        </span>
 
-        <span class="symbol symbol-7">
-            <i class="fa-solid fa-lightbulb"></i>
-        </span>
+    <!-- =====================================================
+         BACKGROUND TECH LAYER
+         طبقة الرموز التكنولوجية المتحركة
+    ====================================================== -->
 
-        <span class="symbol symbol-8">
-            <i class="fa-solid fa-pen"></i>
-        </span>
+    <div class="bg-tech-layer" aria-hidden="true">
+
+        <span class="tech-icon i1">&lt;/&gt;</span>
+        <span class="tech-icon i2">{ }</span>
+        <span class="tech-icon i3">01</span>
+        <span class="tech-icon i4">⌘</span>
+        <span class="tech-icon i5">◇</span>
+        <span class="tech-icon i6">&lt;/&gt;</span>
+        <span class="tech-icon i7">10</span>
+        <span class="tech-icon i8">⚙</span>
+        <span class="tech-icon i9">{ }</span>
+        <span class="tech-icon i10">▣</span>
+        <span class="tech-icon i11">☁</span>
+        <span class="tech-icon i12">◈</span>
+        <span class="tech-icon i13">01</span>
+        <span class="tech-icon i14">&lt;/&gt;</span>
+        <span class="tech-icon i15">⚙</span>
+        <span class="tech-icon i16">{ }</span>
+        <span class="tech-icon i17">▦</span>
+        <span class="tech-icon i18">10</span>
+
+        <div class="tech-grid-lines"></div>
 
     </div>
 
 
 
-    <!-- ==========================================
-         MAIN PAGE
-    =========================================== -->
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
 
-    <div class="page">
+    <header class="navbar">
+
+        <a
+            href="#home"
+            class="logo"
+            aria-label="العودة إلى الرئيسية"
+        >
+
+            <img
+                src="images/logo.png"
+                alt="شعار مركز كربلاء لتكنولوجيا المعلومات"
+            >
+
+            <span class="logo-text">
+                <strong>مركز كربلاء</strong>
+                <small>لتكنولوجيا المعلومات</small>
+            </span>
+
+        </a>
 
 
-        <!-- ======================================
-             HEADER
-        ======================================= -->
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="فتح القائمة"
+            aria-expanded="false"
+        >
 
-        <header class="header">
+            <span class="menu-button-text">القائمة</span>
+
+            <span class="menu-button-lines" aria-hidden="true">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+
+        </button>
 
 
-            <!-- LOGO -->
+    </header>
 
-            <div class="logo-box">
 
-                <img src="logo.png"
-                     class="logo"
-                     alt="شعار ثانوية الصالحات الأهلية للبنات">
+
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+    ></div>
+
+
+
+    <aside
+        class="side-menu"
+        id="sideMenu"
+        aria-hidden="true"
+    >
+
+        <div class="side-menu-header">
+
+            <div class="menu-brand">
+
+                <img
+                    src="images/logo.png"
+                    alt="شعار مركز كربلاء لتكنولوجيا المعلومات"
+                >
+
+                <div>
+                    <strong>مركز كربلاء</strong>
+                    <span>لتكنولوجيا المعلومات</span>
+                </div>
 
             </div>
 
 
-            <!-- SCHOOL NAME -->
+            <button
+                class="close-button"
+                id="closeButton"
+                aria-label="إغلاق القائمة"
+            >
+                <span></span>
+                <span></span>
+            </button>
 
-            <h1>
+        </div>
 
-                ثانوية الصالحات
 
-                <span>
-                    الأهلية للبنات
+        <nav class="menu-links" aria-label="القائمة الرئيسية">
+
+            <a href="#home" class="d-0">
+                <span class="menu-number">01</span>
+                <span>الرئيسية</span>
+                <span class="menu-arrow">←</span>
+            </a>
+
+            <a href="#about" class="d-1">
+                <span class="menu-number">02</span>
+                <span>من نحن</span>
+                <span class="menu-arrow">←</span>
+            </a>
+
+            <a href="#mission" class="d-2">
+                <span class="menu-number">03</span>
+                <span>رسالتنا</span>
+                <span class="menu-arrow">←</span>
+            </a>
+
+            <a href="#story" class="d-3">
+                <span class="menu-number">04</span>
+                <span>قصتنا</span>
+                <span class="menu-arrow">←</span>
+            </a>
+
+            <a href="#courses" class="d-4">
+                <span class="menu-number">05</span>
+                <span>الدورات التدريبية</span>
+                <span class="menu-arrow">←</span>
+            </a>
+
+            <a href="#workshops" class="d-5">
+                <span class="menu-number">06</span>
+                <span>الورشات التدريبية</span>
+                <span class="menu-arrow">←</span>
+            </a>
+
+            <a href="#halls" class="d-6">
+                <span class="menu-number">07</span>
+                <span>قاعات الإيجار</span>
+                <span class="menu-arrow">←</span>
+            </a>
+
+            <a href="#voices" class="d-7">
+                <span class="menu-number">08</span>
+                <span>آراء المتدربين</span>
+                <span class="menu-arrow">←</span>
+            </a>
+
+            <a href="#contact" class="d-8">
+                <span class="menu-number">09</span>
+                <span>تواصل معنا</span>
+                <span class="menu-arrow">←</span>
+            </a>
+
+        </nav>
+
+        <div class="menu-footer">
+
+            <div class="menu-footer-brand">
+                <span>مركز كربلاء لتكنولوجيا المعلومات</span>
+                <small>Karbala Information Technology Center</small>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <main>
+
+
+<!-- =========================================================
+     KCIT HERO SECTION
+========================================================= -->
+
+<section class="kcit-hero" id="home">
+
+    <!-- عناصر تقنية خلفية -->
+    <div class="hero-tech hero-tech-1">&lt;/&gt;</div>
+    <div class="hero-tech hero-tech-2">{ }</div>
+    <div class="hero-tech hero-tech-3">01</div>
+    <div class="hero-tech hero-tech-4">10</div>
+    <div class="hero-tech hero-tech-5">+</div>
+
+    <!-- توهجات الخلفية -->
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-glow hero-glow-3"></div>
+
+    <div class="kcit-hero-container">
+
+        <!-- الشارة العلوية -->
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>مركز كربلاء لتكنولوجيا المعلومات</span>
+        </div>
+
+
+        <!-- العنوان -->
+        <h1 class="hero-title">
+
+            <span class="hero-title-white">
+                طوّر مهاراتك
+            </span>
+
+            <span class="hero-title-blue">
+                وابنِ مستقبلك
+            </span>
+
+        </h1>
+
+
+        <!-- الوصف -->
+        <p class="hero-description">
+            بيئة تدريبية متطورة تجمع بين المعرفة والتكنولوجيا،
+            ونسعى إلى تطوير المهارات الرقمية وتأهيل الشباب لسوق العمل
+            ومواكبة مجالات التقنية الحديثة.
+        </p>
+
+
+        <!-- خط زخرفي -->
+        <div class="hero-divider">
+            <span></span>
+            <i></i>
+            <span></span>
+        </div>
+
+
+        <!-- أزرار -->
+        <div class="hero-actions">
+
+            <a href="#courses" class="hero-btn hero-btn-primary">
+
+                <span class="hero-btn-text">
+                    اكتشف الدورات
                 </span>
 
-            </h1>
+                <span class="hero-btn-arrow">
+                    ←
+                </span>
+
+            </a>
+
+            <a href="#halls" class="hero-btn hero-btn-secondary">
+
+                <span class="hero-btn-text">
+                    استأجر قاعة
+                </span>
+
+                <span class="hero-btn-arrow">
+                    ←
+                </span>
+
+            </a>
+
+        </div>
 
 
-            <!-- SHORT DESCRIPTION -->
+        <!-- معلومات صغيرة -->
+        <div class="hero-features">
 
-            <p class="school-description">
-
-                مؤسسة تعليمية تهدف إلى تقديم بيئة
-                تعليمية متميزة وبناء جيل واعٍ ومبدع
-                يمتلك العلم والمعرفة والمهارات.
-
-            </p>
-
-
-            <!-- DECORATIVE LINE -->
-
-            <div class="header-line">
-
-                <span></span>
-
-                <i class="fa-solid fa-star"></i>
-
-                <span></span>
-
+            <div class="hero-feature">
+                <span class="feature-line"></span>
+                <span>تدريب متخصص</span>
             </div>
 
+            <div class="hero-feature">
+                <span class="feature-line"></span>
+                <span>مهارات رقمية</span>
+            </div>
 
-        </header>
+            <div class="hero-feature">
+                <span class="feature-line"></span>
+                <span>بيئة تقنية متطورة</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 
+        <!-- =================================================
+             ABOUT SECTION
+        ================================================== -->
 
-        <!-- ======================================
-             CONTACT
-        ======================================= -->
+        <section class="about-section" id="about">
 
-        <main>
+            <div class="ambient-glow glow-blue" aria-hidden="true"></div>
+            <div class="ambient-glow glow-cyan" aria-hidden="true"></div>
 
-            <section class="contact-section">
+            <div class="about-container">
 
+                <div class="about-heading reveal">
+                    <span class="about-small-title">من نحن</span>
+                    <h2>نطوّر المهارات ونصنع المستقبل</h2>
+                </div>
 
-                <!-- SECTION TITLE -->
+                <div class="about-text reveal d-01s">
+                    <p>
+                        مركز كربلاء لتكنولوجيا المعلومات مركز تدريبي
+                        متخصص في تطوير المهارات الرقمية والتقنية، نسعى
+                        من خلال برامجنا التدريبية إلى تمكين الشباب
+                        بالمعرفة والمهارات العملية وتأهيلهم لمتطلبات
+                        سوق العمل ومواكبة التطور التكنولوجي.
+                    </p>
+                </div>
 
-                <div class="section-title">
+                <div class="about-statistics">
 
-                    <div class="title-icon">
-
-                        <i class="fa-solid fa-address-book"></i>
-
+                    <div class="stat-card reveal d-005s">
+                        <div class="stat-number">
+                            <span class="counter" data-target="1000">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <div class="stat-title">متدرب</div>
                     </div>
 
-                    <h2>
-                        تواصل معنا
-                    </h2>
+                    <div class="stat-card reveal d-015s">
+                        <div class="stat-number">
+                            <span class="counter" data-target="10">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <div class="stat-title">مدرب خبير</div>
+                    </div>
+
+                    <div class="stat-card reveal d-025s">
+                        <div class="stat-number">
+                            <span class="counter" data-target="4">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <div class="stat-title">سنوات خبرة</div>
+                    </div>
+
+                    <div class="stat-card reveal d-035s">
+                        <div class="stat-number">
+                            <span class="counter" data-target="120">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <div class="stat-title">دورة وورشة تدريبية</div>
+                    </div>
 
                 </div>
 
+                <!-- لمحات من المركز — تُبنى من script.js وتختفي إن لم تتوفر الصور -->
+                <div id="glimpsesBox"></div>
+
+            </div>
+
+        </section>
 
 
-                <!-- ==================================
-                     LOCATION
-                =================================== -->
 
-                <a href="https://maps.google.com?q=%D8%AB%D8%A7%D9%86%D9%88%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B5%D8%A7%D9%84%D8%AD%D8%A7%D8%AA%20%D8%A7%D9%84%D8%A7%D9%87%D9%84%D9%8A%D8%A9%20%D9%84%D9%84%D8%A8%D9%86%D8%A7%D8%AA,%20Karbala"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="contact-card">
+        <!-- =================================================
+             MISSION SECTION
+        ================================================== -->
+
+        <section class="mission-section" id="mission">
+
+            <div class="ambient-glow glow-cyan" aria-hidden="true"></div>
+
+            <div class="mission-container">
+
+                <div class="mission-heading reveal">
+                    <span class="mission-small-title">رسالتنا</span>
+                    <h2>نبني المهارات، <span>نصنع المستقبل</span></h2>
+                </div>
+
+                <div class="mission-content reveal d-01s">
+                    <p>
+                        تتمثل رسالتنا في توفير بيئة تدريبية حديثة
+                        تساعد الشباب على اكتساب المعرفة والمهارات
+                        الرقمية والتقنية التي يحتاجونها في حياتهم
+                        المهنية، من خلال برامج تدريبية عملية
+                        ومواكبة للتطور التكنولوجي ومتطلبات سوق العمل.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
 
 
-                    <div class="card-icon">
 
-                        <i class="fa-solid fa-location-dot"></i>
+        <!-- =================================================
+             STORY / TIMELINE SECTION
+        ================================================== -->
 
+        <section class="story-section" id="story">
+
+            <div class="story-container">
+
+                <div class="story-heading reveal">
+                    <span class="story-small-title">قصتنا</span>
+                    <h2>من هنا بدأت <span>الحكاية</span></h2>
+                </div>
+
+                <div class="timeline is-single" id="storyTimeline">
+
+                    <div class="timeline-line" aria-hidden="true">
+                        <span class="timeline-line-fill" id="timelineLineFill"></span>
                     </div>
 
-
-                    <div class="card-content">
-
-                        <small>
-                            موقع الثانوية
-                        </small>
-
-                        <strong>
-                            كربلاء - نهاية سريع حي المعلمين
-                        </strong>
-
-                        <p>
-                            قرب معارض السيارات
-                        </p>
-
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <h3>تأسيس المركز</h3>
+                            <p>
+                                انطلق مركز كربلاء للتكنولوجيا والمعلومات عام 2023،
+                                ليبدأ مسيرته في تقديم المعرفة والتدريب في مجالات
+                                التكنولوجيا والمعلومات.
+                            </p>
+                        </div>
                     </div>
 
+                </div>
 
-                    <div class="card-arrow">
+            </div>
 
-                        <i class="fa-solid fa-arrow-left"></i>
+        </section>
 
-                    </div>
 
 
-                </a>
+        <!-- =====================================================
+             COURSES SECTION
+        ===================================================== -->
 
+        <section class="courses-section" id="courses">
 
+            <div class="ambient-glow glow-blue" aria-hidden="true"></div>
+            <div class="ambient-glow glow-cyan" aria-hidden="true"></div>
 
-                <!-- ==================================
-                     PHONE
-                =================================== -->
+            <div class="courses-container">
 
-                <a href="tel:07748477756"
-                   class="contact-card">
+                <div class="courses-heading reveal">
+                    <span class="courses-small-title">الدورات التدريبية</span>
+                    <h2>طوّر مهاراتك <span>وابنِ مستقبلك</span></h2>
+                    <p>
+                        برامج تدريبية متخصصة تجمع بين الجانب النظري
+                        والتطبيق العملي لتطوير مهاراتك والاستعداد لسوق العمل.
+                    </p>
+                </div>
 
+                <!-- شريط الفلترة والبحث يُبنى من script.js -->
+                <div id="coursesToolbar"></div>
 
-                    <div class="card-icon">
+                <!-- بطاقات الدورات تُبنى تلقائياً من ملف script.js -->
+                <div class="courses-grid" id="coursesGrid"></div>
 
-                        <i class="fa-solid fa-phone"></i>
-
-                    </div>
-
-
-                    <div class="card-content">
-
-                        <small>
-                            رقم الهاتف
-                        </small>
-
-                        <strong class="english"
-                                dir="ltr">
-
-                            07748477756
-
-                        </strong>
-
-                        <p>
-                            اضغط للاتصال بالثانوية
-                        </p>
-
-                    </div>
-
-
-                    <div class="card-arrow">
-
-                        <i class="fa-solid fa-arrow-left"></i>
-
-                    </div>
-
-
-                </a>
-
-
-
-                <!-- ==================================
-                     EMAIL
-                =================================== -->
-
-                <a href="mailto:alsalihat2017@gmail.com"
-                   class="contact-card">
-
-
-                    <div class="card-icon">
-
-                        <i class="fa-solid fa-envelope"></i>
-
-                    </div>
-
-
-                    <div class="card-content">
-
-                        <small>
-                            البريد الإلكتروني
-                        </small>
-
-                        <strong class="english"
-                                dir="ltr">
-
-                            alsalihat2017@gmail.com
-
-                        </strong>
-
-                        <p>
-                            راسلنا عبر البريد الإلكتروني
-                        </p>
-
-                    </div>
-
-
-                    <div class="card-arrow">
-
-                        <i class="fa-solid fa-arrow-left"></i>
-
-                    </div>
-
-
-                </a>
-
-
-
-                <!-- ==================================
-                     INSTAGRAM
-                =================================== -->
-
-                <a href="https://www.instagram.com/alsalihat2014"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="contact-card">
-
-
-                    <div class="card-icon">
-
-                        <i class="fa-brands fa-instagram"></i>
-
-                    </div>
-
-
-                    <div class="card-content">
-
-                        <small>
-                            Instagram
-                        </small>
-
-                        <strong class="english"
-                                dir="ltr">
-
-                            @alsalihat2014
-
-                        </strong>
-
-                        <p>
-                            تابعونا على إنستغرام
-                        </p>
-
-                    </div>
-
-
-                    <div class="card-arrow">
-
-                        <i class="fa-solid fa-arrow-left"></i>
-
-                    </div>
-
-
-                </a>
-
-
-
-                <!-- ==================================
-                     FACEBOOK
-                =================================== -->
-
-                <a href="https://www.facebook.com/share/19AKbTuxn4/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="contact-card">
-
-
-                    <div class="card-icon">
-
-                        <i class="fa-brands fa-facebook-f"></i>
-
-                    </div>
-
-
-                    <div class="card-content">
-
-                        <small>
-                            Facebook
-                        </small>
-
-                        <strong>
-                            ثانوية الصالحات الأهلية للبنات
-                        </strong>
-
-                        <p>
-                            تابعونا على فيسبوك
-                        </p>
-
-                    </div>
-
-
-                    <div class="card-arrow">
-
-                        <i class="fa-solid fa-arrow-left"></i>
-
-                    </div>
-
-
-                </a>
-
-
-            </section>
-
-
-
-            <!-- ======================================
-                 SOCIAL ICONS
-            ======================================= -->
-
-            <section class="social-section">
-
-
-                <p class="social-heading">
-
-                    <i class="fa-solid fa-share-nodes"></i>
-
-                    تابعونا على منصات التواصل
-
+                <p class="courses-empty" id="coursesEmpty" hidden>
+                    لا توجد دورة مطابقة لبحثك — جرّب كلمة أخرى أو اختر «الكل».
                 </p>
 
+            </div>
 
-                <div class="social-icons">
+        </section>
 
 
-                    <!-- Instagram -->
+        <!-- =====================================================
+             REGISTRATION MODAL — بيانات المتدرب
+        ===================================================== -->
 
-                    <a href="https://www.instagram.com/alsalihat2014"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Instagram">
+        <div class="modal-shell" id="registrationModal" aria-hidden="true">
 
-                        <i class="fa-brands fa-instagram"></i>
+            <div class="modal-overlay-base" data-action="closeRegistration"></div>
 
+            <div class="modal-card reg-modal-box" role="dialog" aria-modal="true" aria-labelledby="regCourseName">
+
+                <span class="sheet-handle" aria-hidden="true"></span>
+
+                <button class="modal-close" data-action="closeRegistration" aria-label="إغلاق">×</button>
+
+                <!-- رأس ثابت: اسم الدورة والسعر -->
+                <div class="reg-course-head">
+                    <span class="reg-eyebrow">التسجيل في دورة</span>
+                    <h2 id="regCourseName">اسم الدورة</h2>
+
+                    <div class="reg-course-price">
+                        <small>السعر</small>
+                        <strong id="regCoursePrice">-</strong>
+                    </div>
+
+                    <p class="reg-course-note" id="regCourseNote"></p>
+                </div>
+
+                <!-- منطقة قابلة للتمرير -->
+                <div class="modal-scroll">
+
+                    <div class="reg-fields-title">
+                        <span aria-hidden="true">✎</span>
+                        <span>بيانات المتدرب</span>
+                    </div>
+
+                    <form class="reg-form" id="registrationForm" novalidate>
+
+                        <!-- حقل فخّ لمكافحة البوتات (Honeypot) — مخفي عن المستخدم الحقيقي
+                             تماماً، ولا يجوز إظهاره أو تسميته باسم واضح مثل "spam" حتى لا
+                             يتجاهله البوت. أي بوت يملأ الحقول تلقائياً سيملأ هذا أيضاً. -->
+                        <div class="form-group kcit-honeypot" aria-hidden="true">
+                            <label for="regWebsite">اتركه فارغاً</label>
+                            <input type="text" id="regWebsite" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="regName">الاسم الثلاثي باللغة العربية</label>
+                            <input class="form-input" type="text" id="regName" placeholder="مثال: علي محمد حسين" autocomplete="name" maxlength="60">
+                            <span class="form-error" id="errName"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="regPhone">رقم الهاتف (يحتوي على واتساب)</label>
+                            <input class="form-input" type="tel" id="regPhone" placeholder="07XXXXXXXXX" autocomplete="tel" inputmode="numeric" maxlength="11">
+                            <span class="form-error" id="errPhone"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="regBirthDay">تاريخ الميلاد كاملاً</label>
+
+                            <div class="birth-row">
+                                <select class="form-input birth-select" id="regBirthDay" aria-label="اليوم"></select>
+                                <select class="form-input birth-select" id="regBirthMonth" aria-label="الشهر"></select>
+                                <select class="form-input birth-select" id="regBirthYear" aria-label="السنة"></select>
+                            </div>
+
+                            <span class="form-error" id="errBirthdate"></span>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!-- شريط أزرار ثابت في الأسفل -->
+                <div class="reg-actions">
+
+                    <button type="button" class="reg-btn reg-btn-whatsapp" data-action="sendRegistrationWhatsApp">
+                        <span>إرسال طلب التسجيل</span>
+                    </button>
+
+                    <button type="button" class="reg-btn reg-btn-pay" data-action="openPayment">
+                        <span>الدفع الآن</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             PAYMENT MODAL — اختيار طريقة الدفع
+        ===================================================== -->
+
+        <div class="modal-shell" id="paymentModal" aria-hidden="true">
+
+            <div class="modal-overlay-base" data-action="closePayment"></div>
+
+            <div class="modal-card payment-modal-box" role="dialog" aria-modal="true">
+
+                <span class="sheet-handle" aria-hidden="true"></span>
+
+                <button class="modal-close" data-action="closePayment" aria-label="إغلاق">×</button>
+
+                <button class="payment-back" data-action="backToRegistration">
+                    <span>→</span>
+                    <span>رجوع لبيانات التسجيل</span>
+                </button>
+
+                <div class="payment-header">
+                    <span>إتمام الاشتراك</span>
+                    <h2>اختر طريقة الدفع</h2>
+                    <p>اختر الطريقة المناسبة لك لإكمال دفع رسوم الدورة.</p>
+                </div>
+
+                <div class="payment-summary">
+                    <div>
+                        <small>الدورة المختارة</small>
+                        <strong id="paymentCourseName">اسم الدورة</strong>
+                    </div>
+                    <div class="payment-summary-price" id="paymentCoursePrice">-</div>
+                </div>
+
+                <div class="payment-methods">
+
+                    <button class="payment-method" id="payZain" data-action="selectPayment" data-arg="zain">
+                        <div class="payment-logo">
+                            <img src="images/zain-cash.png" alt="زين كاش">
+                            <span class="payment-logo-fallback">ZAIN<br>CASH</span>
+                        </div>
+                        <div class="payment-info">
+                            <strong>زين كاش</strong>
+                            <span>الدفع بواسطة محفظة زين كاش</span>
+                        </div>
+                        <div class="payment-method-arrow">←</div>
+                    </button>
+
+                    <button class="payment-method" id="payQi" data-action="selectPayment" data-arg="qi">
+                        <div class="payment-logo">
+                            <img src="images/qi-card.png" alt="كي كارد">
+                            <span class="payment-logo-fallback">Qi<br>CARD</span>
+                        </div>
+                        <div class="payment-info">
+                            <strong>كي كارد</strong>
+                            <span>الدفع بواسطة بطاقة كي كارد</span>
+                        </div>
+                        <div class="payment-method-arrow">←</div>
+                    </button>
+
+                </div>
+
+                <button class="payment-confirm-btn" id="paymentConfirmBtn" data-action="sendPaymentWhatsApp">
+                    <span>تأكيد وإرسال الطلب عبر واتساب</span>
+                </button>
+
+                <div class="payment-notice">
+                    <div class="payment-notice-icon">!</div>
+                    <div>
+                        <strong>ملاحظة مهمة</strong>
+                        <p>
+                            بعد اختيار طريقة الدفع سيتم إرسال طلبك إلى المركز عبر واتساب،
+                            وسيتواصل معكم فريق المركز لتزويدكم بتفاصيل الدفع وتأكيد الاشتراك.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =====================================================
+             WORKSHOPS SECTION
+        ===================================================== -->
+
+        <section class="workshops-section" id="workshops">
+
+            <div class="workshops-container">
+
+                <div class="workshops-heading reveal">
+                    <span class="workshops-small-title">الورشات التدريبية</span>
+                    <h2>ورشات <span>تدريبية</span></h2>
+                    <p>
+                        برامج وورشات تدريبية متخصصة تجمع بين الجانب النظري
+                        والتطبيق العملي وتساعد على تطوير المهارات والاستعداد لسوق العمل.
+                    </p>
+                </div>
+
+                <!-- بطاقة الفعالية القادمة تُبنى من script.js -->
+                <div id="nextEventBox"></div>
+
+                <div class="workshops-notice reveal">
+                    <span class="notice-line"></span>
+                    <p>
+                        عند إقامة ورشات تدريبية، سواء كانت مجانية أو مدفوعة،
+                        سيتم إضافة رابط التسجيل هنا.
+                    </p>
+                    <span class="notice-line"></span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             RENTAL HALLS SECTION
+        ===================================================== -->
+
+        <section class="halls-section" id="halls">
+
+            <div class="ambient-glow glow-blue" aria-hidden="true"></div>
+
+            <div class="halls-container">
+
+                <div class="halls-heading reveal">
+                    <span class="halls-small-title">قاعات المركز</span>
+                    <h2>قاعات <span>الإيجار</span></h2>
+                    <p>
+                        قاعات مجهزة ومناسبة للدورات التدريبية،
+                        الاجتماعات، الورش والفعاليات المختلفة.
+                    </p>
+                </div>
+
+                <div class="halls-grid">
+
+                    <article class="hall-card reveal d-00s">
+
+                        <div class="hall-gallery">
+                            <img loading="lazy" decoding="async" src="images/halls/hall-1/1.jpg" class="hall-main-image" alt="قاعة الاجتماعات">
+                            <div class="gallery-overlay"><span>5 صور</span></div>
+                        </div>
+
+                        <div class="hall-content">
+
+                            <span class="hall-label">قاعة اجتماعات</span>
+                            <h3>قاعة الاجتماعات</h3>
+                            <p class="hall-description">قاعة هادئة ومناسبة للاجتماعات واللقاءات والجلسات الصغيرة.</p>
+
+                            <div class="hall-info">
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">⏱</span>
+                                    <div>
+                                        <small>سعر الساعة</small>
+                                        <strong>يُحدد عند الطلب</strong>
+                                    </div>
+                                </div>
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">👥</span>
+                                    <div>
+                                        <small>عدد المقاعد</small>
+                                        <strong>7 مقاعد</strong>
+                                    </div>
+                                </div>
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">☕</span>
+                                    <div>
+                                        <small>الضيافة</small>
+                                        <strong>مجانية</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="hall-features">
+                                <span class="hall-feature">شاشة عرض</span>
+                                <span class="hall-feature">تكييف</span>
+                                <span class="hall-feature">إنترنت</span>
+                                <span class="hall-feature">ضيافة مجانية</span>
+                            </div>
+
+                            <div class="hall-actions">
+
+                                <button class="hall-btn hall-btn-book" type="button" data-action="openHallBooking" data-arg="hall1">
+                                    <span>حجز القاعة</span>
+                                    <b>←</b>
+                                </button>
+
+                                <button class="hall-btn hall-btn-preview" type="button" data-action="openHallModal" data-arg="hall1">
+                                    <span>معاينة القاعة</span>
+                                    <b>◱</b>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="hall-card reveal d-01s">
+
+                        <div class="hall-gallery">
+                            <img loading="lazy" decoding="async" src="images/halls/hall-2/1.jpg" class="hall-main-image" alt="قاعة التدريب">
+                            <div class="gallery-overlay"><span>5 صور</span></div>
+                        </div>
+
+                        <div class="hall-content">
+
+                            <span class="hall-label">قاعة تدريب</span>
+                            <h3>قاعة التدريب</h3>
+                            <p class="hall-description">قاعة مجهزة بالحواسيب وشاشة تفاعلية ذكية، مثالية للدورات التدريبية والورش.</p>
+
+                            <div class="hall-info">
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">⏱</span>
+                                    <div>
+                                        <small>سعر الساعة</small>
+                                        <strong>يُحدد عند الطلب</strong>
+                                    </div>
+                                </div>
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">👥</span>
+                                    <div>
+                                        <small>عدد المقاعد</small>
+                                        <strong>15 مقعداً</strong>
+                                    </div>
+                                </div>
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">☕</span>
+                                    <div>
+                                        <small>الضيافة</small>
+                                        <strong>مجانية</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="hall-features">
+                                <span class="hall-feature">حواسيب</span>
+                                <span class="hall-feature">شاشة تفاعلية ذكية</span>
+                                <span class="hall-feature">تكييف</span>
+                                <span class="hall-feature">إنترنت</span>
+                                <span class="hall-feature">ضيافة مجانية</span>
+                            </div>
+
+                            <div class="hall-actions">
+
+                                <button class="hall-btn hall-btn-book" type="button" data-action="openHallBooking" data-arg="hall2">
+                                    <span>حجز القاعة</span>
+                                    <b>←</b>
+                                </button>
+
+                                <button class="hall-btn hall-btn-preview" type="button" data-action="openHallModal" data-arg="hall2">
+                                    <span>معاينة القاعة</span>
+                                    <b>◱</b>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="hall-card reveal d-02s">
+
+                        <div class="hall-gallery">
+                            <img loading="lazy" decoding="async" src="images/halls/hall-3/1.jpg" class="hall-main-image" alt="قاعة التدريب الثانية">
+                            <div class="gallery-overlay"><span>5 صور</span></div>
+                        </div>
+
+                        <div class="hall-content">
+
+                            <span class="hall-label">قاعة تدريب</span>
+                            <h3>قاعة التدريب الثانية</h3>
+                            <p class="hall-description">قاعة تدريبية مرنة يمكن زيادة عدد مقاعدها حسب حجم المجموعة.</p>
+
+                            <div class="hall-info">
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">⏱</span>
+                                    <div>
+                                        <small>سعر الساعة</small>
+                                        <strong>يُحدد عند الطلب</strong>
+                                    </div>
+                                </div>
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">👥</span>
+                                    <div>
+                                        <small>عدد المقاعد</small>
+                                        <strong>8 مقاعد (قابلة للزيادة)</strong>
+                                    </div>
+                                </div>
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">☕</span>
+                                    <div>
+                                        <small>الضيافة</small>
+                                        <strong>مجانية</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="hall-features">
+                                <span class="hall-feature">سبورتان وايت بورد</span>
+                                <span class="hall-feature">شاشة عرض</span>
+                                <span class="hall-feature">تكييف</span>
+                                <span class="hall-feature">إنترنت</span>
+                                <span class="hall-feature">ضيافة مجانية</span>
+                            </div>
+
+                            <div class="hall-actions">
+
+                                <button class="hall-btn hall-btn-book" type="button" data-action="openHallBooking" data-arg="hall3">
+                                    <span>حجز القاعة</span>
+                                    <b>←</b>
+                                </button>
+
+                                <button class="hall-btn hall-btn-preview" type="button" data-action="openHallModal" data-arg="hall3">
+                                    <span>معاينة القاعة</span>
+                                    <b>◱</b>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="hall-card reveal d-03s">
+
+                        <div class="hall-gallery">
+                            <img loading="lazy" decoding="async" src="images/halls/hall-4/1.jpg" class="hall-main-image" alt="قاعة الاجتماعات الصغيرة">
+                            <div class="gallery-overlay"><span>5 صور</span></div>
+                        </div>
+
+                        <div class="hall-content">
+
+                            <span class="hall-label">اجتماع عمل</span>
+                            <h3>قاعة الاجتماعات الصغيرة</h3>
+                            <p class="hall-description">مساحة خاصة لأربعة أشخاص، مناسبة لاجتماعات العمل والجلسات المركّزة.</p>
+
+                            <div class="hall-info">
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">⏱</span>
+                                    <div>
+                                        <small>سعر الساعة</small>
+                                        <strong>يُحدد عند الطلب</strong>
+                                    </div>
+                                </div>
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">👥</span>
+                                    <div>
+                                        <small>عدد المقاعد</small>
+                                        <strong>4 مقاعد منفصلة</strong>
+                                    </div>
+                                </div>
+
+                                <div class="hall-info-item">
+                                    <span class="hall-info-icon">☕</span>
+                                    <div>
+                                        <small>الضيافة</small>
+                                        <strong>مجانية</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="hall-features">
+                                <span class="hall-feature">حاسوب</span>
+                                <span class="hall-feature">تكييف</span>
+                                <span class="hall-feature">إنترنت</span>
+                                <span class="hall-feature">ضيافة مجانية</span>
+                            </div>
+
+                            <div class="hall-actions">
+
+                                <button class="hall-btn hall-btn-book" type="button" data-action="openHallBooking" data-arg="hall4">
+                                    <span>حجز القاعة</span>
+                                    <b>←</b>
+                                </button>
+
+                                <button class="hall-btn hall-btn-preview" type="button" data-action="openHallModal" data-arg="hall4">
+                                    <span>معاينة القاعة</span>
+                                    <b>◱</b>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <!-- بطاقة طلب قاعة مخصّصة -->
+                <div class="custom-hall reveal d-01s">
+
+                    <div class="custom-hall-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 20V9.5L12 4l9 5.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>
+                            <path d="M9 21v-6h6v6"/>
+                            <path d="M12 8.6v2.8M10.6 10h2.8"/>
+                        </svg>
+                    </div>
+
+                    <div class="custom-hall-text">
+                        <span class="custom-hall-eyebrow">لم تجد ما يناسبك؟</span>
+                        <h3>اطلب قاعة مخصّصة</h3>
+                        <p>
+                            إذا كانت فعاليتك تحتاج ترتيباً مختلفاً — عدداً أكبر من الحضور،
+                            تجهيزات خاصة، ترتيب جلوس معيّن، أو مدة غير اعتيادية —
+                            أرسل لنا تفاصيل طلبك ويقوم فريق المركز بتجهيز العرض المناسب لك.
+                        </p>
+                    </div>
+
+                    <button class="custom-hall-btn" type="button" data-action="openCustomHall">
+                        <span>طلب قاعة مخصّصة</span>
+                        <b>←</b>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             HALL DETAILS MODAL
+        ===================================================== -->
+
+        <div class="hall-modal" id="hallModal">
+
+            <div class="hall-modal-overlay" data-action="closeHallModal"></div>
+
+            <div class="hall-modal-content">
+
+                <button class="hall-modal-close" data-action="closeHallModal">×</button>
+
+                <div class="modal-gallery">
+                    <img id="modalMainImage" src="" alt="صور القاعة">
+                    <button class="gallery-arrow gallery-prev" data-action="previousHallImage">❮</button>
+                    <button class="gallery-arrow gallery-next" data-action="nextHallImage">❯</button>
+                </div>
+
+                <div class="modal-thumbnails" id="modalThumbnails"></div>
+
+                <div class="modal-hall-details">
+
+                    <span class="modal-hall-label" id="modalHallLabel">قاعة تدريب</span>
+                    <h2 id="modalHallTitle">اسم القاعة</h2>
+                    <p id="modalHallDescription">تفاصيل القاعة</p>
+
+                    <div class="modal-info-grid">
+
+                        <div class="modal-info-box">
+                            <span>⏱</span>
+                            <small>سعر الساعة</small>
+                            <strong id="modalHallPrice">0 د.ع</strong>
+                        </div>
+
+                        <div class="modal-info-box">
+                            <span>👥</span>
+                            <small>عدد المقاعد</small>
+                            <strong id="modalHallSeats">0</strong>
+                        </div>
+
+                        <div class="modal-info-box">
+                            <span>☕</span>
+                            <small>الضيافة</small>
+                            <strong id="modalHallHospitality">-</strong>
+                        </div>
+
+                    </div>
+
+                    <button class="hall-back-btn" data-action="closeHallModal">← العودة إلى القاعات</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             TESTIMONIALS SECTION — آراء المتدربين
+             البطاقات تُبنى من مصفوفة TESTIMONIALS في script.js
+        ===================================================== -->
+
+        <section class="voices-section" id="voices">
+
+            <div class="ambient-glow glow-blue" aria-hidden="true"></div>
+
+            <div class="voices-container">
+
+                <div class="voices-heading reveal">
+                    <span class="voices-small-title">آراء المتدربين</span>
+                    <h2>ماذا قال <span>من تدرّب معنا</span></h2>
+                    <p>
+                        آراء متدربين أكملوا دوراتهم في المركز،
+                        عن تجربتهم مع المدربين والمحتوى والبيئة التدريبية.
+                    </p>
+                </div>
+
+                <!-- تنبيه يظهر ما دامت الآراء نموذجية -->
+                <div id="voicesDemoNote"></div>
+
+                <div class="voices-grid" id="voicesGrid"></div>
+
+                <button class="voices-more" id="voicesMore" type="button" hidden>
+                    <span>عرض المزيد من الآراء</span>
+                    <b>↓</b>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONTACT SECTION
+        ===================================================== -->
+
+        <section class="contact-section" id="contact">
+
+            <div class="ambient-glow glow-cyan" aria-hidden="true"></div>
+            <div class="ambient-glow glow-blue" aria-hidden="true"></div>
+
+            <div class="contact-container">
+
+                <div class="contact-heading reveal">
+                    <span class="contact-small-title">تواصل معنا</span>
+                    <h2>نحن هنا <span>لخدمتك</span></h2>
+                    <p>
+                        يمكنك التواصل مع مركز كربلاء لتكنولوجيا المعلومات
+                        والاستفسار عن الدورات التدريبية والقاعات والخدمات
+                        التي نقدمها.
+                    </p>
+                </div>
+
+                <div class="contact-content">
+
+                    <a
+                        href="https://maps.app.goo.gl/vdxfvJfxjSUd8UKk6?g_st=ic"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="contact-card location-card reveal"
+                    >
+                        <div class="contact-icon">
+                            <img src="images/location.png" alt="موقع المركز">
+                        </div>
+
+                        <div class="contact-info">
+                            <span class="contact-label">موقع المركز</span>
+                            <h3>العراق - محافظة كربلاء</h3>
+                            <p>طريق الحر - مقابل مدينة ألعاب نوارس كربلاء</p>
+                            <span class="contact-action">عرض الموقع على الخريطة</span>
+                        </div>
+
+                        <span class="contact-card-arrow">←</span>
                     </a>
 
 
-                    <!-- Facebook -->
+                    <a
+                        href="tel:07748477756"
+                        class="contact-card phone-card reveal d-01s"
+                    >
+                        <div class="contact-icon">
+                            <img src="images/phone.png" alt="رقم الهاتف">
+                        </div>
 
-                    <a href="https://www.facebook.com/share/19AKbTuxn4/"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Facebook">
+                        <div class="contact-info">
+                            <span class="contact-label">رقم الهاتف</span>
+                            <h3>0774 847 7756</h3>
+                            <p>اتصل بنا للاستفسار عن الدورات والخدمات</p>
+                            <span class="contact-action">اتصال مباشر</span>
+                        </div>
 
-                        <i class="fa-brands fa-facebook-f"></i>
-
+                        <span class="contact-card-arrow">←</span>
                     </a>
 
 
-                    <!-- TikTok - Add Link -->
+                    <a
+                        href="mailto:karblaacit@gmail.com"
+                        class="contact-card email-card reveal d-02s"
+                    >
+                        <div class="contact-icon">
+                            <img src="images/email.png" alt="البريد الإلكتروني">
+                        </div>
 
-                    <a href="#"
-                       class="disabled-social"
-                       aria-label="TikTok">
+                        <div class="contact-info">
+                            <span class="contact-label">البريد الإلكتروني</span>
+                            <h3>karblaacit@gmail.com</h3>
+                            <p>أرسل لنا استفسارك عبر البريد الإلكتروني</p>
+                            <span class="contact-action">إرسال رسالة</span>
+                        </div>
 
-                        <i class="fa-brands fa-tiktok"></i>
-
+                        <span class="contact-card-arrow">←</span>
                     </a>
-
-
-                    <!-- WhatsApp - Add Link -->
-
-                    <a href="#"
-                       class="disabled-social"
-                       aria-label="WhatsApp">
-
-                        <i class="fa-brands fa-whatsapp"></i>
-
-                    </a>
-
-
-                    <!-- YouTube - Add Link -->
-
-                    <a href="#"
-                       class="disabled-social"
-                       aria-label="YouTube">
-
-                        <i class="fa-brands fa-youtube"></i>
-
-                    </a>
-
 
                 </div>
 
 
-            </section>
+                <div class="social-section reveal">
+
+                    <div class="social-heading">
+                        <span>تابعنا على منصات التواصل</span>
+                    </div>
+
+                    <div class="social-links">
+
+                        <a
+                            href="https://www.instagram.com/it.karbala?igsi=MTIwdzN3a2Q2bmZyNQ=="
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-card instagram"
+                        >
+                            <div class="social-logo">
+                                <img src="images/instagram.png" alt="Instagram">
+                            </div>
+                            <div class="social-info">
+                                <strong>Instagram</strong>
+                                <span>@it.karbala</span>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://www.facebook.com/share/1Jr3gP7Djq/?mibextid=wwXIfr"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-card facebook"
+                        >
+                            <div class="social-logo">
+                                <img src="images/facebook.png" alt="Facebook">
+                            </div>
+                            <div class="social-info">
+                                <strong>Facebook</strong>
+                                <span>مركز كربلاء لتكنولوجيا المعلومات</span>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://t.me/IT_karbala"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-card telegram"
+                        >
+                            <div class="social-logo">
+                                <img src="images/telegram.png" alt="Telegram">
+                            </div>
+                            <div class="social-info">
+                                <strong>Telegram</strong>
+                                <span>@IT_karbala</span>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://www.tiktok.com/@it.karbala?_r=1&_t=ZS-99CamwZNZkg"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-card tiktok"
+                        >
+                            <div class="social-logo">
+                                <img src="images/tiktok.png" alt="TikTok">
+                            </div>
+                            <div class="social-info">
+                                <strong>TikTok</strong>
+                                <span>@it.karbala</span>
+                            </div>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
 
 
-        </main>
-
-
-
-        <!-- ======================================
+        <!-- =====================================================
              FOOTER
-        ======================================= -->
+        ===================================================== -->
 
-        <footer>
+        <footer class="site-footer">
 
+            <div class="footer-content">
 
-            <div class="footer-logo">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="شعار المركز">
+                    <div>
+                        <strong>مركز كربلاء لتكنولوجيا المعلومات</strong>
+                        <span>Karbala Information Technology Center</span>
+                    </div>
+                </div>
 
-                <img src="logo.png"
-                     alt="شعار ثانوية الصالحات">
-
-            </div>
-
-
-            <h3>
-                ثانوية الصالحات الأهلية للبنات
-            </h3>
-
-
-            <p>
-                نحو تعليمٍ متميز ومستقبلٍ أفضل
-            </p>
-
-
-            <div class="copyright">
-
-                ©
-
-                <span id="year"></span>
-
-                جميع الحقوق محفوظة
+                <p class="footer-copy">
+                    © 2026 جميع الحقوق محفوظة - مركز كربلاء لتكنولوجيا المعلومات
+                </p>
 
             </div>
-
 
         </footer>
 
 
-    </div>
+    </main>
 
 
-
-    <!-- ==========================================
-         SCROLL TOP
-    =========================================== -->
-
-    <button id="scrollTop"
-            class="scroll-top"
-            aria-label="العودة إلى الأعلى">
-
-        <i class="fa-solid fa-chevron-up"></i>
-
-    </button>
-
-
-
-    <!-- ==========================================
+    <!-- =====================================================
          JAVASCRIPT
-    =========================================== -->
+    ====================================================== -->
 
-    <script src="script.js"></script>
+    <!-- قاعدة معرفة المساعد الذكي — هذا هو الملف الذي تعدّله -->
+    <script src="kb.js" defer></script>
 
+    <!-- محرّك فهم الأسئلة -->
+    <script src="assistant.js" defer></script>
+
+    <script src="script.js" defer></script>
 
 </body>
 

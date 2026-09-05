@@ -1,0 +1,41 @@
+{
+    "id": "/",
+    "name": "مركز كربلاء لتكنولوجيا المعلومات",
+    "short_name": "مركز كربلاء",
+    "description": "دورات وورش تدريبية متخصصة وقاعات مجهزة للإيجار في كربلاء.",
+    "lang": "ar",
+    "dir": "rtl",
+    "start_url": "./index.html",
+    "scope": "./",
+    "display": "standalone",
+    "display_override": ["standalone", "minimal-ui"],
+    "orientation": "portrait",
+    "background_color": "#071b3f",
+    "theme_color": "#0a1e4d",
+    "categories": ["education", "productivity"],
+    "icons": [
+        { "src": "images/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+        { "src": "images/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+        { "src": "images/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    ],
+    "shortcuts": [
+        {
+            "name": "الدورات التدريبية",
+            "short_name": "الدورات",
+            "url": "./index.html#courses",
+            "icons": [{ "src": "images/logo.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "قاعات الإيجار",
+            "short_name": "القاعات",
+            "url": "./index.html#halls",
+            "icons": [{ "src": "images/logo.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "تواصل معنا",
+            "short_name": "تواصل",
+            "url": "./index.html#contact",
+            "icons": [{ "src": "images/logo.png", "sizes": "192x192" }]
+        }
+    ]
+}
