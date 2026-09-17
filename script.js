@@ -288,7 +288,8 @@ const coursesData = {
         hours: "12 ساعة تدريبية",
         seats: "15 مقاعد",
         trainer: "الاستاذ : منتظر قندي",
-        price: "179,000 د.ع",
+        price: "175,000 د.ع",
+        priceNote: "يشمل Coffee Break وأنشطة وفعاليات",
         certificate: true
     },
 
@@ -568,7 +569,7 @@ function renderCourses() {
 
         const card = document.createElement("article");
         card.className = "course-card reveal";
-        card.style.setProperty("--d", ((index % 3) * 0.09) + "s");
+        card.style.setProperty("--d", ((index % 3) * 0.14) + "s");
         card.dataset.course = courseId;
         if (view.trackId) card.dataset.track = view.trackId;
 
@@ -626,6 +627,77 @@ function renderCourses() {
 
     observeReveals(grid);
 }
+
+/* =====================================================================
+   V74 (بيانات) — تقسيم دورة اللغة الإنجليزية إلى ثلاث بطاقات
+   ---------------------------------------------------------------------
+   • البطاقة 1: 6 - 12 سنة   (تفاصيل كاملة)
+   • البطاقة 2: 13 - 17 سنة  (تفاصيل كاملة)
+   • البطاقة 3: 18 سنة فأكثر (يبدأ قريباً — كل التفاصيل «تحدد لاحقاً»)
+   ✏️ لتعديل أي تفصيلة غيّرها من هنا مباشرة.
+===================================================================== */
+
+(function splitEnglishCourses() {
+
+    if (typeof coursesData === "undefined" || !coursesData.english) return;
+
+    const kids = {
+        title:       "الإنجليزية (6-12 سنة)",
+        category:    "اللغات",
+        description: "دورة لغة إنجليزية للأطفال من 6 إلى 12 سنة بمنهج Oxford العالمي المعتمد، بأسلوب ممتع وعملي يناسب هذه المرحلة العمرية.",
+        duration:    "شهر ونصف",
+        hours:       "36 ساعة تدريبية",
+        seats:       "10 مقاعد",
+        trainer:     "الست ايلاف هاني",
+        price:       "150,000 د.ع",
+        priceNote:   "شامل كتاب المنهج والقرص",
+        certificate: true
+    };
+
+    const teens = {
+        title:       "الإنجليزية (13-17 سنة)",
+        category:    "اللغات",
+        description: "دورة لغة إنجليزية لليافعين من 13 إلى 17 سنة بمنهج Oxford العالمي المعتمد، تركّز على المحادثة والقواعد والتطبيق العملي.",
+        duration:    "شهرين",
+        hours:       "48 ساعة تدريبية",
+        seats:       "10 مقاعد",
+        trainer:     "الست ايلاف هاني",
+        price:       "200,000 د.ع",
+        priceNote:   "شامل كتاب المنهج والقرص",
+        certificate: true
+    };
+
+    const adults = {
+        title:       "الإنجليزية (18 فأكثر)",
+        category:    "اللغات",
+        description: "دورة لغة إنجليزية للكبار من عمر 18 سنة فأكثر بمنهج Oxford العالمي المعتمد — التفاصيل والموعد سيُعلنان قريباً.",
+        duration:    "تحدد لاحقاً",
+        hours:       "تحدد لاحقاً",
+        seats:       "تحدد لاحقاً",
+        trainer:     "يحدد لاحقاً",
+        price:       "يحدد لاحقاً",
+        priceNote:   "",
+        certificate: true
+    };
+
+    /* إعادة البناء مع المحافظة على ترتيب بقية الدورات */
+    const source = {};
+    Object.keys(coursesData).forEach(function (k) { source[k] = coursesData[k]; });
+
+    Object.keys(coursesData).forEach(function (k) { delete coursesData[k]; });
+
+    Object.keys(source).forEach(function (id) {
+        if (id === "english") {
+            coursesData["english"]         = kids;
+            coursesData["english-teens"]   = teens;
+            coursesData["english-adults"]  = adults;
+        } else {
+            coursesData[id] = source[id];
+        }
+    });
+
+})();
+
 
 renderCourses();
 
@@ -1788,15 +1860,29 @@ const COURSE_GROUPS = {
 --------------------------------------------------------------------- */
 
 const NEXT_EVENT = {
-    /* ✏️ اجعلها true عند إقامة ورشة أو فعالية جديدة */
-    active: false,
-    title: "ورشة صناعة الفيلم الوثائقي — من الفكرة إلى الإنتاج",
-    summary: "ورشة عملية تأخذك من فكرة الفيلم الوثائقي حتى مرحلة الإنتاج النهائي.",
-    start: "2027-04-15T15:45:00",
-    end:   "2027-04-15T18:00:00",
-    place: "مركز كربلاء لتكنولوجيا المعلومات — طريق الحر",
-    seats: "مقاعد محدودة",
-    price: "يُحدد عند التسجيل"
+
+    /* ✏️ true = الورشة معروضة في الموقع وفي شريط الهيرو
+       ✏️ false = تختفي فوراً من الموقع كله (استعملها عند انتهاء الورشة) */
+    active: true,
+
+    title:   "ورشة الأمن السيبراني المجانية",
+    summary: "ورشة تدريبية مجانية للتعرّف على الأمن السيبراني وأساسيات حماية الأنظمة والحسابات.",
+
+    /* التاريخ والوقت (صيغة: سنة-شهر-يومTساعة:دقيقة:00) */
+    start: "2026-09-24T06:30:00",
+    end:   "2026-09-24T04:15:00",
+
+    trainer: "المهندس محمد عصام",
+    place:   "مركز كربلاء لتكنولوجيا المعلومات — طريق الحر، مقابل مدينة ألعاب نوارس",
+    type:    "حضورية",
+    seats:   "مقاعد محدودة",
+    price:   "مجانية بالكامل",
+
+    /* ✏️ رابط استمارة التسجيل — اتركه فارغاً "" ليصير التسجيل عبر واتساب */
+    registerUrl: "https://forms.gle/KLo4U9W7FsWeTi3ZA",
+
+    /* ✏️ نص الشريط المتحرك أعلى الهيرو (اتركه فارغاً ليُبنى تلقائياً) */
+    tickerText: ""
 };
 
 function renderNextEvent() {
@@ -1834,11 +1920,10 @@ function renderNextEvent() {
         <h3 class="next-event-title">${NEXT_EVENT.title}</h3>
         <p class="next-event-summary">${NEXT_EVENT.summary}</p>
 
-        <div class="next-event-meta">
-            <div class="next-event-meta-item"><small>التاريخ</small><strong>${dateText}</strong></div>
-            <div class="next-event-meta-item"><small>الوقت</small><strong dir="ltr">${hhmm(start)} - ${hhmm(end)}</strong></div>
-            <div class="next-event-meta-item"><small>المكان</small><strong>${NEXT_EVENT.place}</strong></div>
-            <div class="next-event-meta-item"><small>المقاعد</small><strong>${NEXT_EVENT.seats}</strong></div>
+        <div class="next-event-quick">
+            <span class="neq-chip"><b>${dateText}</b></span>
+            <span class="neq-chip"><b dir="ltr">${hhmm(start)} - ${hhmm(end)}</b></span>
+            <span class="neq-chip neq-free"><b>${NEXT_EVENT.price || NEXT_EVENT.seats}</b></span>
         </div>
 
         <div class="countdown" id="eventCountdown" aria-live="polite">
@@ -1850,10 +1935,10 @@ function renderNextEvent() {
 
         <div class="next-event-actions">
             <button type="button" class="event-btn event-btn-main" id="eventRegisterBtn">
-                <span>احجز مقعدك الآن</span><b>←</b>
+                <span>سجّل في الورشة الآن</span><b>←</b>
             </button>
-            <button type="button" class="event-btn event-btn-ghost" id="eventCalendarBtn">
-                <span>أضف إلى تقويمي</span><b>🗓</b>
+            <button type="button" class="event-btn event-btn-ghost" id="eventDetailsBtn">
+                <span>عرض تفاصيل الورشة</span><b>◱</b>
             </button>
         </div>
     `;
@@ -1890,8 +1975,14 @@ function renderNextEvent() {
     const timer = setInterval(tick, 1000);
     renderNextEvent._timer = timer;
 
-    /* حجز مقعد عبر واتساب */
+    /* التسجيل: استمارة إن وُجد رابط، وإلا واتساب */
     box.querySelector("#eventRegisterBtn").addEventListener("click", function () {
+
+        if (NEXT_EVENT.registerUrl && String(NEXT_EVENT.registerUrl).trim()) {
+            window.open(String(NEXT_EVENT.registerUrl).trim(), "_blank", "noopener,noreferrer");
+            return;
+        }
+
         const message =
             "طلب حجز مقعد في فعالية\n" +
             "مركز كربلاء لتكنولوجيا المعلومات\n" +
@@ -1904,42 +1995,22 @@ function renderNextEvent() {
         window.open("https://wa.me/" + CENTER_WHATSAPP_INTL + "?text=" + encodeURIComponent(message), "_blank", "noopener");
     });
 
-    /* ملف تقويم .ics */
-    box.querySelector("#eventCalendarBtn").addEventListener("click", function () {
-
-        function toICS(d) {
-            return d.getUTCFullYear() +
-                pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + "T" +
-                pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + "00Z";
+    /* نافذة تفاصيل الورشة */
+    box.querySelector("#eventDetailsBtn").addEventListener("click", function () {
+        if (typeof window.openEventDetails === "function") {
+            window.openEventDetails({
+                title:   NEXT_EVENT.title,
+                summary: NEXT_EVENT.summary,
+                date:    dateText,
+                time:    hhmm(start) + " - " + hhmm(end),
+                trainer: NEXT_EVENT.trainer || "يحدد لاحقاً",
+                place:   NEXT_EVENT.place,
+                type:    NEXT_EVENT.type || "حضورية",
+                price:   NEXT_EVENT.price || "",
+                seats:   NEXT_EVENT.seats || "",
+                url:     NEXT_EVENT.registerUrl || ""
+            });
         }
-
-        const ics = [
-            "BEGIN:VCALENDAR",
-            "VERSION:2.0",
-            "PRODID:-//Karbala IT Center//AR",
-            "BEGIN:VEVENT",
-            "UID:" + Date.now() + "@karbala-it",
-            "DTSTAMP:" + toICS(new Date()),
-            "DTSTART:" + toICS(start),
-            "DTEND:" + toICS(end),
-            "SUMMARY:" + NEXT_EVENT.title,
-            "DESCRIPTION:" + NEXT_EVENT.summary,
-            "LOCATION:" + NEXT_EVENT.place,
-            "END:VEVENT",
-            "END:VCALENDAR"
-        ].join("\r\n");
-
-        const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
-        const url  = URL.createObjectURL(blob);
-        const a    = document.createElement("a");
-
-        a.href = url;
-        a.download = "karbala-event.ics";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-
-        setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
     });
 
     observeReveals(box.parentElement);
@@ -2254,6 +2325,11 @@ let COURSE_META = {
     "horse":            { status: "open", label: "", seatsLeft: null, startDate: "" }
 
 };
+
+/* V74 — حالتا البطاقتين الجديدتين للغة الإنجليزية
+   ✏️ غيّر status إلى open / soon / full / closed حسب الحاجة */
+COURSE_META["english-teens"]  = { status: "open", label: "", seatsLeft: null, startDate: "" };
+COURSE_META["english-adults"] = { status: "soon", label: "", seatsLeft: null, startDate: "" };
 
 /* ✏️ النصوص الافتراضية للشريط المائل — غيّرها هنا لتتغيّر في كل الدورات
    (لا تغيّر أسماء المفاتيح open / soon / full / closed ولا قيم cls) */
@@ -4245,16 +4321,16 @@ const PAYMENT_ENDPOINT = "";
     }
 
     /* بطاقات الإحصاء تكبر بلطف */
-    mark(".stat-card", "reveal-zoom", 0.08);
+    mark(".stat-card", "reveal-zoom", 0.13);
 
     /* منصات التواصل */
-    mark(".social-card", "reveal-soft", 0.07);
+    mark(".social-card", "reveal-soft", 0.13);
     mark(".social-heading", "reveal-soft", 0);
 
     /* بقية العناصر */
     mark(".workshops-notice", "reveal-soft", 0);
-    mark(".hall-card", null, 0.09);
-    mark(".contact-card", null, 0.08);
+    mark(".hall-card", null, 0.13);
+    mark(".contact-card", null, 0.13);
     mark(".footer-content", "reveal-soft", 0);
     mark(".mission-heading h2", "reveal-soft", 0);
 
@@ -4549,7 +4625,7 @@ const TESTIMONIALS = [
 
         const card = document.createElement("article");
         card.className = "voice-card reveal reveal-soft";
-        card.style.setProperty("--d", ((i % 3) * 0.07) + "s");
+        card.style.setProperty("--d", ((i % 3) * 0.12) + "s");
         if (i >= VISIBLE_AT_FIRST) card.classList.add("is-extra");
 
         let stars = "";
@@ -5812,13 +5888,7 @@ const PAYMENT_SOON_TEXT = {
    =====================================================================
    ✏️ كل ما تحتاجه موجود في الجدول التالي فقط.
 
-   لإضافة خصم على دورة:
-     "معرّف الدورة": {
-         newPrice: "150,000 د.ع",     ← السعر بعد الخصم
-         until:    "2026-09-15",      ← آخر يوم للعرض (سنة-شهر-يوم)
-         label:    "عرض لمدة أسبوع",  ← نص الشارة (اختياري)
-         track:    ""                 ← معرّف الفئة العمرية (اختياري)
-     }
+  
 
    • العرض يختفي تلقائياً بعد تاريخ until — لا تحتاج تحذفه بنفسك.
    • معرّفات الدورات: computer-present, computer-online, editing,
@@ -5831,18 +5901,14 @@ const PAYMENT_SOON_TEXT = {
    const COURSE_OFFERS = {
        "photoshop": {
            newPrice: "150,000 د.ع",
-           until:    "2026-09-15",
+           until:    "2026-09-11",
            label:    "عرض لمدة أسبوع"
        }
    };
 ===================================================================== */
 
 const COURSE_OFFERS = {
-    "photoshop": {
-        newPrice: "150,000 د.ع",
-        until:    "2026-09-15",
-        label:    "عرض لمدة أسبوع"
-    }
+    /* لا توجد عروض حالياً — انتهى عرض دورة التصميم الكرافيكي */
 };
 
 
@@ -8242,5 +8308,399 @@ const COURSE_ICONS = {
        'unsafe-inline' بالـ CSP، وهذا يُضعف الحماية ضد XSS */
     const regForm = document.getElementById("registrationForm");
     if (regForm) regForm.addEventListener("submit", function (e) { e.preventDefault(); });
+
+})();
+
+/* =====================================================================
+   V75 — لمسات دورة الإنجليزية الثلاث + إيقاف النقر على أيقونة النيون
+   ---------------------------------------------------------------------
+   1) الأيقونة النيون بجانب اسم الدورة صارت زخرفية فقط — لا تُفتح بالنقر.
+   2) البطاقتان الجديدتان تأخذان نفس أيقونة الإنجليزية.
+   3) بطاقة «18 سنة فأكثر»: الحالة «يبدأ قريباً» وكل المربعات «تحدد لاحقاً».
+===================================================================== */
+
+(function englishCardsFinishing() {
+
+    "use strict";
+
+    const NEW_IDS = ["english-teens", "english-adults"];
+
+    /* ---------- 1) حالة التسجيل لكل بطاقة ---------- */
+
+    /* (حالة التسجيل مضبوطة في COURSE_META بأعلى الملف) */
+
+    /* ---------- 2) الأيقونة الخاصة ---------- */
+
+    try {
+        if (typeof COURSE_ICONS === "object" && COURSE_ICONS && COURSE_ICONS["english"]) {
+            NEW_IDS.forEach(function (id) { COURSE_ICONS[id] = COURSE_ICONS["english"]; });
+        }
+    } catch (e) { /* تجاهل */ }
+
+    /* ---------- 3) تصنيفات الفلترة ---------- */
+
+    try {
+        if (typeof COURSE_GROUPS === "object" && COURSE_GROUPS) {
+
+            const langs = COURSE_GROUPS.languages && COURSE_GROUPS.languages.ids;
+            if (langs) NEW_IDS.forEach(function (id) {
+                if (langs.indexOf(id) === -1) langs.push(id);
+            });
+
+            /* برامج الأطفال: الفئة 6-12 و 13-17 فقط */
+            const kids = COURSE_GROUPS.kids && COURSE_GROUPS.kids.ids;
+            if (kids && kids.indexOf("english-teens") === -1) kids.push("english-teens");
+        }
+    } catch (e) { /* تجاهل */ }
+
+    /* ---------- 4) تعديلات ما بعد بناء البطاقات ---------- */
+
+    const LATER = "تحدد لاحقاً";
+
+    function staticIcon(btn) {
+        if (!btn || btn.dataset.v75 === "1") return;
+        btn.dataset.v75 = "1";
+        btn.setAttribute("aria-hidden", "true");
+        btn.setAttribute("tabindex", "-1");
+        btn.removeAttribute("title");
+        btn.removeAttribute("aria-label");
+        btn.classList.add("ico-static");
+        if (btn.tagName === "BUTTON") btn.disabled = false;   /* نبقيه ظاهراً بلا تعطيل بصري */
+    }
+
+    function fixAdults(card) {
+
+        if (!card || card.dataset.v75adult === "1") return;
+
+        const boxes = card.querySelectorAll(".mini-box");
+        if (boxes.length < 4) return;      /* لم تكتمل المربعات بعد */
+
+        boxes.forEach(function (box) {
+            const b = box.querySelector("b");
+            if (b && b.textContent.trim()) b.textContent = LATER;
+        });
+
+        const price = card.querySelector(".course-price-box b, .course-price-box strong");
+        if (price) price.textContent = "يحدد لاحقاً";
+
+        if (boxes.length >= 6) card.dataset.v75adult = "1";
+    }
+
+    function run() {
+
+        document.querySelectorAll(".course-title-ico").forEach(staticIcon);
+
+        const adults = document.querySelector('.course-card[data-course="english-adults"]');
+        if (adults) fixAdults(adults);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", function () { setTimeout(run, 0); });
+    } else { setTimeout(run, 0); }
+
+    const grid = document.getElementById("coursesGrid");
+
+    if (grid && "MutationObserver" in window) {
+        let pending = false;
+        new MutationObserver(function () {
+            if (pending) return;
+            pending = true;
+            requestAnimationFrame(function () { pending = false; run(); });
+        }).observe(grid, { childList: true, subtree: true });
+    }
+
+    /* محاولات إضافية حتى تكتمل كل الطبقات */
+    let n = 0;
+    const t = setInterval(function () { run(); if (++n > 12) clearInterval(t); }, 350);
+
+})();
+
+
+
+/* =====================================================================
+   V77 — نافذة «تفاصيل الورشة»
+   تُستدعى من زر البطاقة، وتعرض كل تفاصيل الورشة بشكل مرتّب.
+===================================================================== */
+
+(function eventDetailsModal() {
+
+    "use strict";
+
+    let shell = null;
+
+    function esc(t) {
+        return String(t == null ? "" : t)
+            .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    const ICONS = {
+        date:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.4"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+        time:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.4V12l3 1.8"/></svg>',
+        trainer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>',
+        place:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>',
+        type:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20.5h6M12 16.5v4"/></svg>',
+        price:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9.2a3.2 3.2 0 0 0-3-1.7c-1.7 0-2.7.9-2.7 2S10.4 11.3 12 11.6s2.8.8 2.8 2.1-1.1 2.2-2.8 2.2A3.2 3.2 0 0 1 9 14.2"/><path d="M12 5.8v1.7M12 16v1.7"/></svg>',
+        seats:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10.5V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3.5"/><path d="M4.5 10.5h15v5.5h-15z"/><path d="M6.5 16v2.5M17.5 16v2.5"/></svg>'
+    };
+
+    function row(icon, label, value) {
+        if (!value) return "";
+        return '<div class="evd-row">' +
+                   '<span class="evd-ico" aria-hidden="true">' + icon + '</span>' +
+                   '<span class="evd-txt"><small>' + esc(label) + '</small>' +
+                   '<strong>' + esc(value) + '</strong></span>' +
+               '</div>';
+    }
+
+    function ensure() {
+
+        if (shell) return shell;
+
+        shell = document.createElement("div");
+        shell.className = "modal-shell evd-shell";
+        shell.id = "eventDetailsModal";
+        shell.setAttribute("aria-hidden", "true");
+
+        shell.innerHTML =
+            '<div class="modal-overlay-base" data-evd-close="1"></div>' +
+            '<div class="modal-card evd-card" role="dialog" aria-modal="true" aria-labelledby="evdTitle">' +
+                '<span class="sheet-handle" aria-hidden="true"></span>' +
+                '<button class="modal-close" type="button" data-evd-close="1" aria-label="إغلاق">×</button>' +
+                '<div class="evd-head">' +
+                    '<span class="evd-eyebrow">تفاصيل الورشة</span>' +
+                    '<h2 id="evdTitle"></h2>' +
+                    '<p class="evd-summary"></p>' +
+                '</div>' +
+                '<div class="evd-rows"></div>' +
+                '<a class="evd-cta" target="_blank" rel="noopener noreferrer"><span>سجّل في الورشة الآن</span><b>←</b></a>' +
+            '</div>';
+
+        document.body.appendChild(shell);
+
+        shell.addEventListener("click", function (e) {
+            if (e.target.closest("[data-evd-close]")) close();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && shell.classList.contains("is-open")) close();
+        });
+
+        return shell;
+    }
+
+    function close() {
+        if (!shell) return;
+        shell.classList.remove("is-open");
+        shell.classList.remove("active");
+        shell.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("evd-locked");
+    }
+
+    function open(data) {
+
+        const el = ensure();
+
+        el.querySelector("#evdTitle").textContent = data.title || "الورشة";
+        el.querySelector(".evd-summary").textContent = data.summary || "";
+
+        el.querySelector(".evd-rows").innerHTML =
+            row(ICONS.date,    "التاريخ",        data.date) +
+            row(ICONS.time,    "الوقت",          data.time) +
+            row(ICONS.trainer, "المدرب",         data.trainer) +
+            row(ICONS.type,    "نوع المحاضرة",   data.type) +
+            row(ICONS.place,   "المكان",         data.place) +
+            row(ICONS.price,   "الحضور",         data.price) +
+            row(ICONS.seats,   "المقاعد",        data.seats);
+
+        const cta = el.querySelector(".evd-cta");
+
+        if (data.url) {
+            cta.href = data.url;
+            cta.hidden = false;
+        } else {
+            cta.removeAttribute("href");
+            cta.hidden = true;
+        }
+
+        el.classList.add("is-open");
+        el.classList.add("active");
+        el.setAttribute("aria-hidden", "false");
+        document.body.classList.add("evd-locked");
+    }
+
+    window.openEventDetails = open;
+    window.closeEventDetails = close;
+
+})();
+
+/* =====================================================================
+   V79 — إعلان الورشة المنبثق عند فتح الموقع
+   ---------------------------------------------------------------------
+   • يظهر بعد ثانيتين من فتح الموقع، وفي كل مرة يُفتح أو يُحدَّث فيها
+     الموقع (لا يُخزَّن أي "تمّت رؤيته" في المتصفح).
+   • يعتمد كلياً على NEXT_EVENT: إن كانت active = false أو انتهى الموعد
+     لا يظهر الإعلان إطلاقاً.
+   • تنبيه «سيتم إضافة رابط التسجيل هنا» يختفي ما دامت هناك ورشة معروضة.
+===================================================================== */
+
+(function workshopPopup() {
+
+    "use strict";
+
+    const DELAY = 1800;                  /* التأخير قبل الظهور (ملي ثانية) */
+
+    function ev() { return (typeof NEXT_EVENT !== "undefined") ? NEXT_EVENT : null; }
+
+    function activeNow() {
+        const e = ev();
+        if (!e || !e.active) return false;
+        const end = new Date(e.end || e.start);
+        if (isNaN(end.getTime())) return false;
+        return end.getTime() >= Date.now();
+    }
+
+    function esc(t) {
+        return String(t == null ? "" : t)
+            .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    const SHIELD =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" ' +
+        'stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M12 3l7.5 3v5.4c0 4.4-3 8.3-7.5 9.6-4.5-1.3-7.5-5.2-7.5-9.6V6z"/>' +
+        '<path d="M9.6 12.1l1.8 1.8 3.2-3.4"/></svg>';
+
+    const ICONS = {
+        date: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.4"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+        time: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.4V12l3 1.8"/></svg>',
+        user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>',
+        pin:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>'
+    };
+
+    function line(icon, text) {
+        if (!text) return "";
+        return '<div class="wsp-line"><span class="wsp-ico" aria-hidden="true">' + icon +
+               '</span><span>' + esc(text) + '</span></div>';
+    }
+
+    function hhmm(d) {
+        return String(d.getHours()).padStart(2, "0") + ":" +
+               String(d.getMinutes()).padStart(2, "0");
+    }
+
+    let shell = null;
+
+    function close() {
+        if (!shell) return;
+        shell.classList.remove("is-open");
+        shell.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("wsp-locked");
+        setTimeout(function () { if (shell) shell.remove(); shell = null; }, 400);
+    }
+
+    function build() {
+
+        const e = ev();
+        if (!e) return;
+
+        const start = new Date(e.start);
+        const end   = new Date(e.end);
+
+        let dateText = "";
+        if (!isNaN(start.getTime())) {
+            dateText = start.toLocaleDateString("ar-IQ-u-nu-latn", {
+                weekday: "long", year: "numeric", month: "long", day: "numeric"
+            });
+        }
+
+        const timeText = (!isNaN(start.getTime()) && !isNaN(end.getTime()))
+            ? hhmm(start) + " - " + hhmm(end) : "";
+
+        shell = document.createElement("div");
+        shell.className = "wsp-shell";
+        shell.id = "workshopPopup";
+        shell.setAttribute("aria-hidden", "true");
+
+        shell.innerHTML =
+            '<div class="wsp-overlay" data-wsp-close="1"></div>' +
+            '<div class="wsp-card" role="dialog" aria-modal="true" aria-labelledby="wspTitle">' +
+
+                '<button class="wsp-close" type="button" data-wsp-close="1" aria-label="إغلاق">×</button>' +
+
+                '<div class="wsp-glow" aria-hidden="true"></div>' +
+
+                '<div class="wsp-emblem" aria-hidden="true">' + SHIELD + '</div>' +
+
+                '<span class="wsp-badge">' + esc(e.price || "ورشة تدريبية") + '</span>' +
+
+                '<h2 id="wspTitle" class="wsp-title">' + esc(e.title || "ورشة تدريبية") + '</h2>' +
+
+                '<p class="wsp-sub">' + esc(e.summary || "") + '</p>' +
+
+                '<div class="wsp-lines">' +
+                    line(ICONS.date, dateText) +
+                    line(ICONS.time, timeText) +
+                    line(ICONS.user, e.trainer ? "المدرب: " + e.trainer : "") +
+                    line(ICONS.pin,  e.place) +
+                '</div>' +
+
+                '<div class="wsp-actions">' +
+                    (e.registerUrl
+                        ? '<a class="wsp-cta" href="' + esc(e.registerUrl) + '" target="_blank" rel="noopener noreferrer">' +
+                          '<span>سجّل الآن مجاناً</span><b>←</b></a>'
+                        : '') +
+                    '<button type="button" class="wsp-later" data-wsp-close="1">ربما لاحقاً</button>' +
+                '</div>' +
+
+            '</div>';
+
+        document.body.appendChild(shell);
+
+        shell.addEventListener("click", function (evt) {
+            if (evt.target.closest("[data-wsp-close]")) close();
+        });
+
+        /* النقر على زر التسجيل يُغلق الإعلان أيضاً */
+        const cta = shell.querySelector(".wsp-cta");
+        if (cta) cta.addEventListener("click", function () { setTimeout(close, 150); });
+
+        document.addEventListener("keydown", function (evt) {
+            if (evt.key === "Escape" && shell && shell.classList.contains("is-open")) close();
+        });
+
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                shell.classList.add("is-open");
+                shell.setAttribute("aria-hidden", "false");
+                document.body.classList.add("wsp-locked");
+            });
+        });
+    }
+
+    /* تنبيه قسم الورشات */
+    function toggleNotice() {
+        const note = document.querySelector(".workshops-notice");
+        if (note) note.hidden = activeNow();
+    }
+
+    function boot() {
+        toggleNotice();
+        if (!activeNow()) return;
+        setTimeout(build, DELAY);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else { setTimeout(boot, 0); }
+
+    setInterval(toggleNotice, 60000);
+
+    /* للاختبار: اكتب في الكونسول KCIT_SHOW_WORKSHOP_POPUP() */
+    window.KCIT_SHOW_WORKSHOP_POPUP = function () {
+        if (shell) { shell.remove(); shell = null; }
+        build();
+    };
 
 })();
